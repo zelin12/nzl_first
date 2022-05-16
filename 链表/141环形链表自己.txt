@@ -1,0 +1,29 @@
+//快慢指针
+class Solution {
+public:
+	bool hasCycle(ListNode *head)
+	{
+		if (head == nullptr || head->next == nullptr)
+		{
+			return false;
+		}
+		ListNode* slow, *fast;
+		slow = head;
+		fast = head->next;
+//此处写的或之前到时fast为空时还在执行！！
+		while(fast != nullptr && slow != nullptr)
+		{
+            if(!fast->next)
+            {
+                return false;
+            }
+            slow = slow->next;
+			fast = fast->next->next;
+			if (slow == fast)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+};

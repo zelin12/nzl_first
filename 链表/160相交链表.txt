@@ -1,0 +1,62 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+//暴力解法，遍历一个链表加入map，在遍历另外一个
+class Solution {
+public:
+	ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) 
+	{
+		map<ListNode*, int> a;
+		while (headA != nullptr)
+		{
+			a[headA] = 1;
+			headA = headA->next;
+		}
+		while (headB != nullptr)
+		{
+			if (a[headB] != 0)
+			{
+				return headB;
+			}
+			else
+				headB = headB->next;
+		}
+		return NULL;
+	}
+};
+//改进map
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+	ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) 
+	{
+		unordered_set<ListNode*> a;
+		while (headA != nullptr)
+		{
+			a.insert(headA);
+			headA = headA->next;
+		}
+		while (headB != nullptr)
+		{
+			if (a.find(headB) != a.end())
+			{
+				return headB;
+			}
+			else
+				headB = headB->next;
+		}
+		return NULL;
+	}
+};

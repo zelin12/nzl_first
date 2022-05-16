@@ -1,0 +1,35 @@
+//注意&&运算符是先验证左边要是左边不成立就不会再验证右边了,因此左右顺序很重要，尤其是指针这块C++
+//注意，如果 && 运算符左侧的子表达式为 false，则不会检查右侧的表达式。
+//因为只要有一个子表达式为 false，则整个表达式都为 false，所以再检查剩余的表达式会浪费 CPU 时间。这被称为短路评估。
+class Solution {
+public:
+	ListNode* removeElements(ListNode* head, int val) 
+	{
+		ListNode* first, *second;
+		if (head == nullptr)
+			return head;
+		while(head != nullptr && head->val == val)
+        {
+            head = head->next;
+        }
+        if(head == nullptr || head->next == nullptr)
+            return head;
+        first = head;
+        second = first->next;
+		while (second != nullptr)
+		{
+			if (second->val == val)
+			{
+				first->next = second->next;
+				delete second;
+				second = first->next;
+			}
+			else
+			{
+				first = first->next;
+				second = second->next;
+			}
+		}
+		return head;
+	}
+};

@@ -1,0 +1,29 @@
+//牺牲空间换取时间
+class Solution {
+public:
+	int removeDuplicates(vector<int>& nums) {
+		vector<int> temp;
+		int number = nums[0];
+		int count = 1;
+		temp.push_back(nums[0]);
+		for (int i = 1; i < nums.size(); i++)
+		{
+			if (number == nums[i])
+			{
+				continue;
+			}
+			else
+			{
+				temp.push_back(nums[i]);
+				count++;
+				number = nums[i];
+			}
+		}
+		nums.clear();
+		for (int j = 0; j < count; j++)
+		{
+			nums.push_back(temp[j]);
+		}
+		return count;
+	}
+};

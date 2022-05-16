@@ -1,0 +1,25 @@
+class Solution {
+public:
+	int majorityElement(vector<int>& nums) {
+		map<int, int> test;
+		int number = 0;
+		for (int i = 0; i < nums.size(); i++)
+		{
+			if (test.count(nums[i]) == 0)
+			{
+				test[nums[i]] = 1;
+                			number = 1;
+			}
+			else
+			{
+				test[nums[i]] = ++test.at(nums[i]);
+				if (test.at(nums[i]) > nums.size() / 2)
+				{
+					number = nums[i];
+					break;
+				}
+			}
+		}
+		return number;
+	}
+};

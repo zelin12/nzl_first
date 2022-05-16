@@ -1,0 +1,27 @@
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) 
+    {
+        vector<int> array1;
+        int first = -1;
+        int last = -1;
+        int count = 0;
+        for(int i = 0;i < nums.size();i++)
+        {
+            if(nums[i] == target && count == 0)
+            {
+                first = i;
+                ++count;
+            }
+            else if(nums[i] == target && count !=0)
+            {
+                last = i;
+            }
+        }
+        if(count == 1 && last == -1)
+            last =first;
+        array1.push_back(first);
+        array1.push_back(last);
+        return array1;
+    }
+};

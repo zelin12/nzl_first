@@ -1,0 +1,51 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+//暴力解法，思路就是中序遍历，一边先从左子树开始，一边从右子树开始，将数值插入数组，再进行对比。
+//这块的null，需要注意的是子节点数字底下也是null！！！
+
+  void search(TreeNode* x, vector<int>& a)
+  {
+	  if (x == 0)
+	  {
+		  a.push_back(0);
+		  return;
+	  }
+	  search(x->left, a);
+	  search(x->right, a);
+     a.push_back(x->val);
+  }
+
+ void search1(TreeNode* x1, vector<int>& a1)
+  {
+	  if (x1 == nullptr)
+	  {
+		  a1.push_back(0);
+		  return;
+	  }
+	  search1(x1->right, a1);
+      search1(x1->left, a1);
+	  a1.push_back(x1->val);
+  }
+
+  class Solution {
+  public:
+	  bool isSymmetric(TreeNode* root) 
+	  {
+		  vector<int> a, b;
+		  search(root->left, a);
+		  search1(root->right, b);
+		  if (a == b)
+			  return true;
+		  else
+			  return false;
+	  }
+  };

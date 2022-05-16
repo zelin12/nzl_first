@@ -1,0 +1,27 @@
+//快速排序
+void quick_sort(vector<int>& nums, int l, int r)
+{
+	//终止条件,由于操作是将比基准小的元素放在左边，因此基准肯定在新的right，所以总是大于first，也就是第一个元素
+	if (l + 1 >= r)
+	{
+		return;
+	}
+
+	int first = l, last = r - 1, key = nums[first];
+	while (first < last)
+	{
+		while (first < last && nums[last] >= key)
+		{
+			--last;
+		}
+		nums[first] = nums[last];
+		while (first < last && nums[first] <= key)
+		{
+			++first;
+		}
+		nums[last] = key;
+	}
+	nums[first] = key;
+	quick_sort(nums, l, first);
+	quick_sort(nums, first + 1, r);
+}

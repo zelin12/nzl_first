@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int thirdMax(vector<int>& nums) 
+    {
+        unordered_set<int> map;
+        int count = 0;
+        int number = 0;
+        sort(nums.begin(),nums.end());
+        for(int i = nums.size() - 1;i >= 0;i--)
+        {
+            if(map.count(nums[i]) == 0)
+            {
+                map.insert(nums[i]);
+                count++;
+                if(count == 3)
+                {
+                    number = nums[i];
+                    break;
+                }
+            }
+        }
+//不存在第三大数判定
+        if(count < 3)
+        {
+            number = nums[nums.size() - 1];
+        }
+        return number;
+    }
+};

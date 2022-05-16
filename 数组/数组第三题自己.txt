@@ -1,0 +1,38 @@
+//答案正确但是超时了
+/*
+面积取决于短板。
+①因此即使长板往内移动时遇到更长的板，矩形的面积也不会改变；遇到更短的板时，面积会变小。
+②因此想要面积变大，只能让短板往内移动(因为移动方向固定了)，当然也有可能让面积变得更小，但只有这样才存在让面积变大的可能性
+*/
+#include<iostream>
+#include<vector>
+
+using namespace std;
+
+class Solution {
+public:
+	int maxArea(vector<int>& height) 
+	{
+		int max = 0;
+		int area = 0;
+		if()
+			for (int i = 0; i < height.size() - 1; i++)
+			{
+				for (int j = i + 1; j < height.size(); j++)
+				{
+					height[i] <= height[j] ? area = height[i] * (j - i) : area = height[j] * (j - i);
+					if (area > max)
+						max = area;
+				}
+			}
+		return max;
+	}
+};
+int main()
+{
+	vector<int> array1 = { 1, 8, 6, 2, 5, 4, 8, 3, 7 };
+	Solution a;
+	a.maxArea(array1);
+	
+	return 0;
+}
